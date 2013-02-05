@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta charset="${_response_encoding}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        #{get 'moreStyles' /}
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <script src="@{'/public/javascripts/jquery-1.8.3.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        #{get 'moreScripts' /}
+    </head>
+    <body>
+    #{if username?.length() > 0}
+        Hi ${username} <br/>
+        <a href="@{Application.dashboard()}">Home</a> <br/>
+        <a href="@{Application.processLogOut()}">Log Out</a> <br/>
+    #{/if}
+
+
+        #{doLayout /}
+    </body>
+</html>

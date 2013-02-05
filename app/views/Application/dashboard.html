@@ -1,0 +1,28 @@
+#{extends 'main.html'/}
+#{set title:'Dashboard' /}
+<h3>Home Page</h3>
+
+#{if errorMessage}
+<span style="color: red">Error: ${errorMessage}</span> <br/>
+#{/if}
+
+#{if usertype == services.UserType.STUDENT}
+<a href="@{Application.chooseDepartmentToRegisterForCourse()}">Register For Courses</a> <br/>
+Update Personal Information <br/>
+Apply To Be a Tutor <br/>
+Find Tutors                      <br/>
+Tutor Logbook                         <br/>
+<a href="@{Application.studentReport()}">View Grading Pattern</a> <br/>
+#{/if}
+
+#{elseif usertype == services.UserType.FACULTY}
+Assign Grades (Not Implemented)                 <br/>
+<a href="@{Application.facultyPersonalInformation}">Update Personal Information</a> <br/>
+Assign Tutors                                        <br/>
+<a href="@{Application.facultyReport()}">View Student Performance</a> <br/>
+#{/elseif}
+
+#{else }
+<a href="@{Application.administrativeReport}">Administrative Reports</a> <br/>
+Add New Course (Not Implemented)                               <br/>
+#{/else}

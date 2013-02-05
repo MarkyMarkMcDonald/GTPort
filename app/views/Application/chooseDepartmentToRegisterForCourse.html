@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+#{set title:'Choose Department' /}
+
+
+#{form @Application.registerForCourses()}
+Department<br/>
+#{select name:"departmentId",items:departmentsAsList, valueProperty:"id", labelProperty:"name"}
+#{/select}
+    <input type="submit">
+#{/form}

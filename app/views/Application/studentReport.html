@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+<h2>Average Grade By Instructor</h2>
+
+
+<table>
+    <tr>
+        <th>Instructor</th>
+        <th>Course Code</th>
+        <th>Course Name</th>
+        <th>Average Grade</th>
+    </tr>
+
+#{list items:resultRows, as:'row'}
+    <tr>
+        <td>${row.instructor}</td>
+        <td>${row.courseCode}</td>
+        <td>${row.courseName}</td>
+        <td>${row.gpa}</td>
+    </tr>
+#{/list}
+
+</table>

@@ -1,0 +1,81 @@
+#{extends 'main.html' /}
+#{set title:'Create A User' /}
+
+
+<h3>Create a Student User</h3>
+#{if errorMessage}<span style="color:red">Error: ${errorMessage}</span>#{/if}
+#{form @Application.processCreateStudent()}
+#{createAccount /}
+<h4>Regular User Information</h4>
+#{baseInformation /}
+
+<h4>Student Information</h4>
+Degree:
+<select name="degree">
+    <option value="BS">Bachelors</option>
+    <option value="MS">Masters</option>
+    <option value="PHD">Doctors</option>
+</select>
+<br/>
+
+Major:
+<select name="major">
+    <option value="AE">Aerospace Engineering</option>
+    <option value="BIO">Biology</option>
+    <option value="BIOENG">Biomedical Engineering</option>
+    <option value="CS">Computer Science</option>
+    <option value="ECE">Electical & Computer Engineering</option>
+</select>
+<br/>
+
+<h4>Previous Education</h4>
+
+<div id="previousEducations">
+#{previousEducation /}
+</div>
+<a href="#" id="addPreviousEducation">Add Education</a>
+<a href="#" id="removeLastEducation">Remove Last Education</a>
+
+<input type="submit" value="register" />
+
+<script type="text/javascript">
+    String.prototype.replaceAll = function(token, newToken, ignoreCase) {
+        var str, i = -1, _token;
+        if((str = this.toString()) && typeof token === "string") {
+            _token = ignoreCase === true? token.toLowerCase() : undefined;
+            while((i = (
+                    _token !== undefined?
+                            str.toLowerCase().indexOf(
+                                    _token,
+                                    i >= 0? i + newToken.length : 0
+                            ) : str.indexOf(
+                            token,
+                            i >= 0? i + newToken.length : 0
+                    )
+                    )) !== -1 ) {
+                str = str.substring(0, i)
+                        .concat(newToken)
+                        .concat(str.substring(i + token.length));
+            }
+        }
+        return str;
+    };
+    $(function(){
+        var educationsContainer = $('#previousEducations');
+        $('#addPreviousEducation').on('click', function(e){
+            e.preventDefault();
+            var numberEducations = educationsContainer.children('.previousEducation').length;
+            if (numberEducations <= 2){
+                $('<div class="previousEducation">Name of Institution attended: <input type="text" name="previousEducations[0].institutionName"> <br/>Major: <input type="text" name="previousEducations[0].major"> <br/>Degree:<select name="previousEducations[0].degree"><option value="BS">Bachelors</option><option value="MS">Masters</option><option value="PHD">Doctors</option></select><br/>Year of Graduation: <input name="previousEducations[0].gradYear" type="text"><br/>GPA: <input name="previousEducations[0].gpa"><br/></div>'.replaceAll("0",numberEducations.toString())).appendTo(educationsContainer);
+            }
+        });
+        $('#removeLastEducation').on('click',function(e){
+            e.preventDefault();
+            var numberEducations = educationsContainer.children('.previousEducation').length;
+            if (numberEducations >= 2){
+                educationsContainer.children('.previousEducation:last').remove();
+            }
+        });
+    })
+</script>
+#{/form}

@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+<h1>Administrative Report</h1>
+
+<table>
+    <tr>
+        <th>Course Code</th>
+        <th>Course Title</th>
+        <th>Average Grade</th>
+    </tr>
+#{list items:averages, as:'item'}
+<tr>
+    <td>${item.courseCode}</td>
+    <td>${item.courseName}</td>
+    <td>${item.gpa}</td>
+</tr>
+
+#{/list}
+</table>

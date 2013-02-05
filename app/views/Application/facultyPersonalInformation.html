@@ -1,0 +1,32 @@
+#{extends 'main.html' /}
+
+<h3>View and Edit Your Faculty Profile</h3>
+#{if errorMessage}<span style="color:red">Error: ${errorMessage}</span>#{/if}
+
+#{form @Application.processUpdateFacultyPersonalInformation()}
+
+<h4>Regular User Information</h4>
+Address:<input type="text" name="address" value="${address}"> <br/>
+Full Name: <input type="text" name="name" value="${fullName}"> <br/>
+Email: <input type="text" name="email" value="${email}"> <br>
+Date of Birth (yyyy-mm-dd): <input type="text" name="dob" value="${dob}"> <br/>
+Personal Address: <input type="text" name="personalAddress" value="${permanentAddress}"> <br/>
+Gender:
+#{select name:"gender", value:gender}
+    #{option "M"}Male#{/option}
+    #{option "F"}Female#{/option}
+#{/select}
+Contact Number: <input type="text" name="contactNumber" value="${contactNumber}">
+
+<h4>Faculty User Information</h4>
+Position:
+#{select name:'position', value:position}
+    #{option "Professor"}Professor#{/option}
+    #{option "Associate Professor"}Associate Professor#{/option}
+    #{option "Assistant Professor"}Assistant Professor#{/option}
+#{/select}
+<br/>
+Department ID:<input name="departmentId" type="text" value="${departmentId}">
+<input type="submit" value="edit" />
+
+#{/form}

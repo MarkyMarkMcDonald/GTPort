@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:'Faculty Report' /}
+<h2>Average Grades and Tutoring Stats</h2>
+
+<table>
+    <tr>
+        <th>Course Code</th>
+        <th>Course Name</th>
+        <th>No. of Meetings</th>
+        <th>Average Grade of students</th>
+    </tr>
+#{list items:finalResults, as:'result'}
+    <tr>
+        <td>${result.courseCode}</td>
+        <td>${result.courseName}</td>
+        <td>0</td>
+        <td>${result.noVisitsGpa}</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>1-3</td>
+        <td>${result.lowVisitsGpa}</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>More than 3</td>
+        <td>${result.highVisitsGpa}</td>
+    </tr>
+
+#{/list}
+
+
+</table>

@@ -1,0 +1,27 @@
+#{extends 'main.html'/}
+#{set title:'Create Faculty' /}
+
+<h3>Create a Faculty User</h3>
+
+#{if errorMessage}<span style="color:red">Error: ${errorMessage}</span>#{/if}
+#{form @Application.processCreateFaculty()}
+
+#{createAccount /}
+<h4>Regular User Information</h4>
+#{baseInformation /}
+
+<h4>Faculty User Information</h4>
+Position:
+<select name="position">
+    <option value="Professor">Professor</option>
+    <option value="Associate Professor">Associate Professor</option>
+    <option value="Assistant Professor">Assistant Professor</option>
+</select>
+<br/>
+Department ID:<input name="departmentId" type="text">
+
+
+
+<input type="submit" value="register" />
+#{/form}
+
